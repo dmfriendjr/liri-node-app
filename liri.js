@@ -2,7 +2,9 @@ require("dotenv").config();
 let Twitter = require('twitter');
 let Spotify = require('node-spotify-api');
 let request = require('request');
+let fs = require('fs');
 let apiKeys = require('./keys');
+let date = new Date();
 
 let spotifyClient = new Spotify(apiKeys.spotify);
 let twitterClient = new Twitter(apiKeys.twitter);
@@ -27,36 +29,45 @@ function getMovieInfo(search) {
 	if (search.length === 0) search = 'Mr. Nobody';
 	
 	request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${search}`, function (err, response, body) {
+		if (err) {
+			return writeToLog(err);
+		}
+
 		body = JSON.parse(body);
-		console.log(`Title: ${body.Title}`);
-		console.log(`Release Year: ${body.Year}`);
+		let logString = ``;
+		logString += `Title: ${body.Title}\n`;
+		logString += `Release Year: ${body.Year}\n`;
 		body.Ratings.forEach( (rating) => {
-			console.log(`${rating.Source}: ${rating.Value}`);
+			logString += `${rating.Source}: ${rating.Value}\n`;
 		});
-		console.log(`Country: ${body.Country}`);
-		console.log(`Language: ${body.Language}`);
-		console.log(`Plot: ${body.Plot}`);
-		console.log(`Actors: ${body.Actors}`);
+		logString += `Country: ${body.Country}\n`;
+		logString += `Language: ${body.Language}\n`;
+		logString += `Plot: ${body.Plot}\n`
+		logString += `Actors: ${body.Actors}\n`;
+		writeToLog(logString);
 	});
 }
 
 function getLastTweets() {
 	twitterClient.get('statuses/home_timeline', { tweet_mode: 'extended' }, function(error, tweets, response) {
 		if (error) {
-			return console.log(error);
+			return writeToLog(error);
 		}
 		console.log(`********************Twitter********************`);
-
+	
+		let logString = ``;
 		tweets.forEach( (tweet) => {
-			console.log(tweet.user.screen_name);
-			console.log(tweet.created_at);
+			logString += `${tweet.user.screen_name}\n`;
+			logString += `${tweet.created_at}\n`;
 			if (tweet.retweeted_status) {
-				console.log(tweet.retweeted_status.full_text);
+				logString += `${tweet.retweeted_status.full_text}\n`;
 			} else {
-				console.log(tweet.full_text);
+				logString += `${tweet.full_text}\n`;
 			}
-			console.log('-----------');
+			logString += '-----------\n';
 		});
+
+		writeToLog(logString);
 	});
 }
 
@@ -77,9 +88,11 @@ function getSongInfo(song) {
 		process.stdin.once("data", function(data) {
 			let displayTrack = response.tracks.items[parseFloat(data)];
 			console.log(`-----Result-----`);
-			console.log(`Song: ${displayTrack.name} by ${displayTrack.artists[0].name}`);
-			console.log(`Album: ${displayTrack.album.name}`);
-			console.log(`Preview Link: ${displayTrack.href}`);
+			let logString = ``;
+			logString += `Song: ${displayTrack.name} by ${displayTrack.artists[0].name}\n`;
+			logString += `Album: ${displayTrack.album.name}\n`;
+			logString += `Preview Link: ${displayTrack.href}\n`;
+			writeToLog(logString);
 			process.stdin.pause();
 		});
 	});
@@ -93,4 +106,14 @@ function getUserInput() {
 	}
 
 	return input;
+}
+
+function writeToLog(string) {
+	console.log(string);
+
+	logString = date.toDateString() + ' ' + date.toTimeString();
+	logString += '\n' + string + '\n';
+	fs.appendFile('log.txt', logString, (err) => {
+		if (err) return console.log(err);
+	});
 }
