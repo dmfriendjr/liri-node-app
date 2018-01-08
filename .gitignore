@@ -1,0 +1,7 @@
+.DS_Store
+*~
+*.swp
+*.swo
+*.env
+.tern-project
+node_modules
