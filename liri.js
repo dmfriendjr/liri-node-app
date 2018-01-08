@@ -1,7 +1,7 @@
 require("dotenv").config();
-var Twitter = require('twitter');
-var Spotify = require('node-spotify-api');
-
+let Twitter = require('twitter');
+let Spotify = require('node-spotify-api');
+let request = require('request');
 let apiKeys = require('./keys');
 
 let spotifyClient = new Spotify(apiKeys.spotify);
@@ -17,9 +17,25 @@ switch(userCommand) {
 		getSongInfo(getUserInput());
 		break;
 	case 'movie-this':
+		getMovieInfo(getUserInput());
 		break;
 	case 'do-what-it-says':
 		break;
+}
+
+function getMovieInfo(search) {
+	request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${search}`, function (err, response, body) {
+		body = JSON.parse(body);
+		console.log(`Title: ${body.Title}`);
+		console.log(`Release Year: ${body.Year}`);
+		body.Ratings.forEach( (rating) => {
+			console.log(`${rating.Source}: ${rating.Value}`);
+		});
+		console.log(`Country: ${body.Country}`);
+		console.log(`Language: ${body.Language}`);
+		console.log(`Plot: ${body.Plot}`);
+		console.log(`Actors: ${body.Actors}`);
+	});
 }
 
 function getLastTweets() {
@@ -48,22 +64,20 @@ function getSongInfo(song) {
 	spotifyClient.search({ type: 'track', query: song }, function(err, response) {
 		if (err) return console.log(err);
 
-		console.log(song);
 		console.log('-----Song Results-----');
-		console.log(response.tracks.items[0].name);
+
 		response.tracks.items.forEach( (result, index) => {
-			//console.log(result);
 			console.log(`${index}) ${result.name} by ${result.artists[0].name}`);
 		});
 
 		console.log('Please enter number of desired track');
-		let selection = process.stdin.read();
 		process.stdin.resume();
-		process.stdout.write('Please enter number of desired track');
 		process.stdin.once("data", function(data) {
 			let displayTrack = response.tracks.items[parseFloat(data)];
-			console.log(`${displayTrack.name} by ${displayTrack.artists[0].name}`);
-			console.log(displayTrack.album.name);
+			console.log(`-----Result-----`);
+			console.log(`Song: ${displayTrack.name} by ${displayTrack.artists[0].name}`);
+			console.log(`Album: ${displayTrack.album.name}`);
+			console.log(`Preview Link: ${displayTrack.href}`);
 			process.stdin.pause();
 		});
 	});
