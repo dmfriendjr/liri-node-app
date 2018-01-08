@@ -24,6 +24,8 @@ switch(userCommand) {
 }
 
 function getMovieInfo(search) {
+	if (search.length === 0) search = 'Mr. Nobody';
+	
 	request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${search}`, function (err, response, body) {
 		body = JSON.parse(body);
 		console.log(`Title: ${body.Title}`);
