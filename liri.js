@@ -104,7 +104,6 @@ function logMovie(movie) {
 		logString += `Actors: ${movie.Actors}\n`;
 	}
 	writeToLog(logString);
-
 }
 
 function getLastTweets() {
@@ -135,7 +134,7 @@ function getSongInfo(song) {
 
 	spotifyClient.search({ type: 'track', query: song }, function(err, response) {
 		if (err) return writeToLog(err);
-
+		console.log('********************Spotify********************');
 		console.log('-----Song Results-----');
 
 		response.tracks.items.forEach( (result, index) => {
