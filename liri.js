@@ -62,19 +62,21 @@ function getMovieInfo(search) {
 		if (err) {
 			return writeToLog(err);
 		}
-		console.log('********************OMDb********************');
+		console.log('********************OMDb**********');
 		body = JSON.parse(body);
 		if (queryType === 't') {
 			logMovie(body);
 		} else {
 			body.Search.forEach( (movie, index) => {
-				console.log(`${index}) ${movie.Title}`);	
+				console.log(`${index}) ${movie.Title} (${movie.Type})`);	
 			});
 			console.log('Please enter number of desired movie');
 			process.stdin.resume();
 			process.stdin.once("data", function(data) {
-				logMovie(body.Search[parseFloat(data)]);
 				process.stdin.pause();
+				request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${body.Search[parseFloat(data)].Title}&type=${body.Search[parseFloat(data)].Type}`, (err, response,body) => {
+					logMovie(JSON.parse(body));
+				});
 			});
 		}
 	});
@@ -86,24 +88,15 @@ function logMovie(movie) {
 	logString += `Release Year: ${movie.Year}\n`;
 	//Checking to ensure the properties exist because
 	//if user has used search flag then they won't be in results
-	if (movie.Ratings) {
-		movie.Ratings.forEach( (rating) => {
-			logString += `${rating.Source}: ${rating.Value}\n`;
-		});
-	}
-	if (movie.Country) {
-		logString += `Country: ${movie.Country}\n`;
-	}
-	if (movie.Language) {
-		logString += `Language: ${movie.Language}\n`;
-	}
-	if (movie.Plot) {
-		logString += `Plot: ${movie.Plot}\n`
-	}
-	if (movie.Actors) {
-		logString += `Actors: ${movie.Actors}\n`;
-	}
+	movie.Ratings.forEach( (rating) => {
+		logString += `${rating.Source}: ${rating.Value}\n`;
+	});
+	logString += `Country: ${movie.Country}\n`;
+	logString += `Language: ${movie.Language}\n`;
+	logString += `Plot: ${movie.Plot}\n`
+	logString += `Actors: ${movie.Actors}\n`;
 	writeToLog(logString);
+
 }
 
 function getLastTweets() {
@@ -134,7 +127,7 @@ function getSongInfo(song) {
 
 	spotifyClient.search({ type: 'track', query: song }, function(err, response) {
 		if (err) return writeToLog(err);
-		console.log('********************Spotify********************');
+
 		console.log('-----Song Results-----');
 
 		response.tracks.items.forEach( (result, index) => {
