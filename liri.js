@@ -40,7 +40,7 @@ function getMovieInfo(search) {
 
 	let queryType = 't';
 	let queryString;
-	console.log(Array.isArray(search));
+
 	if (Array.isArray(search)) {
 		//Flags have been passed
 		search.forEach( (flag) => {
@@ -58,27 +58,53 @@ function getMovieInfo(search) {
 		queryString = search;
 	}
 
-	console.log(queryString);
 	request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&${queryType}=${queryString}`, function (err, response, body) {
 		if (err) {
 			return writeToLog(err);
 		}
+		console.log('********************OMDb********************');
 		body = JSON.parse(body);
-		console.log(body);
 		if (queryType === 't') {
-			let logString = ``;
-			logString += `Title: ${body.Title}\n`;
-			logString += `Release Year: ${body.Year}\n`;
-			body.Ratings.forEach( (rating) => {
-				logString += `${rating.Source}: ${rating.Value}\n`;
+			logMovie(body);
+		} else {
+			body.Search.forEach( (movie, index) => {
+				console.log(`${index}) ${movie.Title}`);	
 			});
-			logString += `Country: ${body.Country}\n`;
-			logString += `Language: ${body.Language}\n`;
-			logString += `Plot: ${body.Plot}\n`
-			logString += `Actors: ${body.Actors}\n`;
-			writeToLog(logString);
+			console.log('Please enter number of desired movie');
+			process.stdin.resume();
+			process.stdin.once("data", function(data) {
+				logMovie(body.Search[parseFloat(data)]);
+				process.stdin.pause();
+			});
 		}
 	});
+}
+
+function logMovie(movie) {
+	let logString = '';
+	logString += `Title: ${movie.Title}\n`;
+	logString += `Release Year: ${movie.Year}\n`;
+	//Checking to ensure the properties exist because
+	//if user has used search flag then they won't be in results
+	if (movie.Ratings) {
+		movie.Ratings.forEach( (rating) => {
+			logString += `${rating.Source}: ${rating.Value}\n`;
+		});
+	}
+	if (movie.Country) {
+		logString += `Country: ${movie.Country}\n`;
+	}
+	if (movie.Language) {
+		logString += `Language: ${movie.Language}\n`;
+	}
+	if (movie.Plot) {
+		logString += `Plot: ${movie.Plot}\n`
+	}
+	if (movie.Actors) {
+		logString += `Actors: ${movie.Actors}\n`;
+	}
+	writeToLog(logString);
+
 }
 
 function getLastTweets() {
@@ -135,7 +161,6 @@ function readCommandFile() {
 	lineReader.on('line', function(line) {
 		let fileCommand = line.split(' ');
 		let command = fileCommand[0];
-		console.log('Processing:', command);
 		let input = '';
 		for (let i = 1; i < fileCommand.length; i++) {
 			input += fileCommand[i] + ' ';
@@ -151,7 +176,6 @@ function getUserInput() {
 	let flags = [];
 
 	for (let i = 3; i < process.argv.length; i++) {
-		console.log(`argv:${process.argv[i]}`);
 		if (process.argv[i].charAt(0) === '-') {
 			flags.push(process.argv[i]);
 		} else {
