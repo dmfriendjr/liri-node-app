@@ -29,4 +29,27 @@ my-tweets:
 ```
 do-what-it-says: 
 	Looks for a random.txt file and runs the commands found on each new line in the file
+	Note: Expects each command to be on a seperate line
+```
+
+## Usage
+
+This project relies on API keys provided in a .env file in the following format:
+
+```
+# Spotify API keys
+
+SPOTIFY_ID=KEY_HERE
+SPOTIFY_SECRET=KEY_HERE
+
+# Twitter API keys
+
+TWITTER_CONSUMER_KEY=KEY_HERE
+TWITTER_CONSUMER_SECRET=KEY_HERE
+TWITTER_ACCESS_TOKEN_KEY=KEY_HERE
+TWITTER_ACCESS_TOKEN_SECRET=KEY_HERE
+
+#OMDb API key
+
+OMDB_KEY=KEY_HERE
 ```
