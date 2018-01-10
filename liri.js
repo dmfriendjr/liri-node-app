@@ -33,7 +33,19 @@ function processUserCommand(command, input) {
 		case 'do-what-it-says':
 			readCommandFile();
 			break;
+		case '-h':
+			displayHelp();
+			break;
 	}
+}
+
+function displayHelp() {
+	console.log('\nAvailable commands:');
+	console.log('my-tweets: Displays last twenty tweets by you or those you are following');
+	console.log('spotify-this-song <song-name>: Searches given song name on spotify and provides list of results, with details about your selection');
+	console.log('movie-this <movie-name>: Finds movie in OMDb API that matches title exactly and provides details')
+	console.log('		Options: -search -s Provides a list of search results that match title name and provides details on selection');
+	console.log('do-what-it-says: Looks for a random.txt file in directory where this file is located and runs any commands contained on each line of the file\n');
 }
 
 function getMovieInfo(search) {
@@ -47,9 +59,12 @@ function getMovieInfo(search) {
 		search.forEach( (flag) => {
 			if (flag.charAt(0) === '-') {
 				//This is a flag
-				if (flag === '-s') {
+				if (flag === '-s' || flag === '-search') {
 					queryType = 's';
+				} else if (flag === '-h' || flag === '-help') {
+					console.log(`Use of -search (-s) flag will provide a list of search results for the title given. Otherwise will find closest exact title match`);
 				}
+
 			} else {
 				//This is not a flag, so must be the search string
 				queryString = flag;
@@ -57,6 +72,9 @@ function getMovieInfo(search) {
 		});		
 	} else {
 		queryString = search;
+	}
+	if (queryString.length === 0) {
+		return;
 	}
 
 	request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&${queryType}=${queryString}`, function (err, response, body) {
@@ -96,8 +114,6 @@ function logMovie(movie) {
 	let logString = '';
 	logString += `Title: ${movie.Title}\n`;
 	logString += `Release Year: ${movie.Year}\n`;
-	//Checking to ensure the properties exist because
-	//if user has used search flag then they won't be in results
 	movie.Ratings.forEach( (rating) => {
 		logString += `${rating.Source}: ${rating.Value}\n`;
 	});
@@ -106,7 +122,6 @@ function logMovie(movie) {
 	logString += `Plot: ${movie.Plot}\n`
 	logString += `Actors: ${movie.Actors}\n`;
 	writeToLog(logString);
-
 }
 
 function getLastTweets() {
