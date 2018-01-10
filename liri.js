@@ -70,7 +70,6 @@ function getMovieInfo(search) {
 		} else {
 			let resultsList = [];
 			body.Search.forEach( (movie, index) => {
-				//console.log(`${index}) ${movie.Title} (${movie.Type})`);	
 				resultsList.push(`${movie.Title} (${movie.Type})`);
 			});
 
@@ -141,21 +140,25 @@ function getSongInfo(song) {
 
 		console.log('-----Song Results-----');
 
+		let resultsList = [];
 		response.tracks.items.forEach( (result, index) => {
-			console.log(`${index}) ${result.name} by ${result.artists[0].name}`);
+			resultsList.push(`${result.name} by ${result.artists[0].name}`);
 		});
 
-		console.log('Please enter number of desired track');
-		process.stdin.resume();
-		process.stdin.once("data", function(data) {
-			let displayTrack = response.tracks.items[parseFloat(data)];
-			console.log(`-----Result-----`);
+		inquirer.prompt([
+			{
+				type: 'list',
+				message: 'Please pick desired song',
+				choices: resultsList,
+				name: 'songChoice'
+			}
+		]).then( (inquirerResponse) => {
 			let logString = ``;
+			let	displayTrack = response.tracks.items[resultsList.indexOf(inquirerResponse.songChoice)]; 
 			logString += `Song: ${displayTrack.name} by ${displayTrack.artists[0].name}\n`;
 			logString += `Album: ${displayTrack.album.name}\n`;
 			logString += `Preview Link: ${displayTrack.href}\n`;
 			writeToLog(logString);
-			process.stdin.pause();
 		});
 	});
 }
