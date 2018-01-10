@@ -2,6 +2,7 @@ require("dotenv").config();
 let Twitter = require('twitter');
 let Spotify = require('node-spotify-api');
 let request = require('request');
+let inquirer = require('inquirer');
 let fs = require('fs');
 let readline = require('readline');
 let apiKeys = require('./keys');
@@ -67,16 +68,26 @@ function getMovieInfo(search) {
 		if (queryType === 't') {
 			logMovie(body);
 		} else {
+			let resultsList = [];
 			body.Search.forEach( (movie, index) => {
-				console.log(`${index}) ${movie.Title} (${movie.Type})`);	
+				//console.log(`${index}) ${movie.Title} (${movie.Type})`);	
+				resultsList.push(`${movie.Title} (${movie.Type})`);
 			});
-			console.log('Please enter number of desired movie');
-			process.stdin.resume();
-			process.stdin.once("data", function(data) {
-				process.stdin.pause();
-				request(`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${body.Search[parseFloat(data)].Title}&type=${body.Search[parseFloat(data)].Type}`, (err, response,body) => {
-					logMovie(JSON.parse(body));
-				});
+
+			inquirer.prompt([
+				{
+					type: 'list',
+					message: 'Please pick the movie you are looking for',
+					choices: resultsList,
+					name: 'movieChoice'
+				}
+			]).then( (inquirerResponse) => {
+				let selectedIndex = resultsList.indexOf(inquirerResponse.movieChoice)
+				request(
+					`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${body.Search[selectedIndex].Title}&type=${body.Search[selectedIndex].Type}`,
+					(err, response,body) => {
+						logMovie(JSON.parse(body));
+					});
 			});
 		}
 	});
