@@ -36,6 +36,9 @@ function processUserCommand(command, input) {
 		case '-h':
 			displayHelp();
 			break;
+		default:
+			writeToLog('Invalid command. Use -h for command help.');
+			break;
 	}
 }
 
@@ -86,6 +89,7 @@ function getMovieInfo(search) {
 		if (queryType === 't') {
 			logMovie(body);
 		} else {
+			//Need to display results of movie search and let user pick
 			let resultsList = [];
 			body.Search.forEach( (movie, index) => {
 				resultsList.push(`${movie.Title} (${movie.Type})`);
@@ -100,6 +104,7 @@ function getMovieInfo(search) {
 				}
 			]).then( (inquirerResponse) => {
 				let selectedIndex = resultsList.indexOf(inquirerResponse.movieChoice)
+				//Full movie details not returned in search API, have to do title search to get detailed information
 				request(
 					`http://www.omdbapi.com/?apikey=${apiKeys.omdb.key}&t=${body.Search[selectedIndex].Title}&type=${body.Search[selectedIndex].Type}`,
 					(err, response,body) => {
