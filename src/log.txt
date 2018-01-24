@@ -1,0 +1,155 @@
+Wed Jan 10 2018 17:07:25 GMT-0500 (EST)
+Title: Basketball
+Release Year: 2013–
+Internet Movie Database: 5.5/10
+Country: South Korea
+Language: Korean
+Plot: Drama series is set within the turbulent period between the Japanese colonial era and the division of Korea into North and South. Kang San is from a poor family. He struggles to get away ...
+Actors: Ji-han Do
+
+Wed Jan 10 2018 17:07:30 GMT-0500 (EST)
+Title: BASEketball
+Release Year: 1998
+Internet Movie Database: 6.6/10
+Rotten Tomatoes: 42%
+Metacritic: 38/100
+Country: USA
+Language: English
+Plot: Two childhood friends are pro athletes of a national sport called BASEketball, a hybrid of baseball and basketball, and must deal with a greedy businessman scheming against their team.
+Actors: Trey Parker, Matt Stone, Dian Bachar, Yasmine Bleeth
+
+Wed Jan 10 2018 17:07:45 GMT-0500 (EST)
+Title: Star Wars: Episode IV - A New Hope
+Release Year: 1977
+Internet Movie Database: 8.7/10
+Rotten Tomatoes: 93%
+Metacritic: 92/100
+Country: USA
+Language: English
+Plot: Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station while also attempting to rescue Princess Leia from the evil Darth Vader.
+Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing
+
+Wed Jan 10 2018 17:08:01 GMT-0500 (EST)
+Title: Star Wars: Episode IV - A New Hope
+Release Year: 1977
+Internet Movie Database: 8.7/10
+Rotten Tomatoes: 93%
+Metacritic: 92/100
+Country: USA
+Language: English
+Plot: Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station while also attempting to rescue Princess Leia from the evil Darth Vader.
+Actors: Mark Hamill, Harrison Ford, Carrie Fisher, Peter Cushing
+
+Wed Jan 10 2018 17:08:46 GMT-0500 (EST)
+Song: Toe to Toe by Streetlight Manifesto
+Album: The Hands That Thieve
+Preview Link: https://api.spotify.com/v1/tracks/4dBD086ylvQIRSQQvOoZSk
+
+Wed Jan 10 2018 17:09:07 GMT-0500 (EST)
+MurrayNewlands
+Wed Jan 10 22:01:08 +0000 2018
+It is never too late to reinvent yourself.
+
+#WednesdayWisdom
+#Motivation
+#Inspiration https://t.co/gTixZpcI1I
+-----------
+RealKevinCole
+Wed Jan 10 21:56:54 +0000 2018
+i just played @konjak's ICONOCLASTS for an hour. here is a sneak preview of my video script.
+
+(sincerely, though, this is, so far, definitely one of the best video games i have ever played.) https://t.co/0RRT7IEpbQ
+-----------
+___discovery
+Wed Jan 10 21:56:27 +0000 2018
+We are very happy to announce that Old Man’s Journey is heading to #NintendoSwitch:
+
+https://t.co/dvvmtlBE4J
+
+#indiegame #nindies
+-----------
+TekuStudios
+Wed Jan 10 21:53:05 +0000 2018
+The curator page now has a review for Candle by @TekuStudios ! You can see the full steam review here: https://t.co/OmnWamgywS
+-----------
+___discovery
+Wed Jan 10 21:48:04 +0000 2018
+When do you like to hear about things before they're ready to use, as a user of things like a game engine?
+-----------
+RealKevinCole
+Wed Jan 10 21:33:24 +0000 2018
+As always our new M-Class E-Mails episode will go up next week - also guest starring @RealKevinCole who is like the cool whip of guest stars: He makes everything better. 
+
+In the meantime, check out the latest M-Class!: https://t.co/IcrcgVxi5N
+-----------
+KronnectGames
+Wed Jan 10 21:30:18 +0000 2018
+Create your own strategy game in #unity3d with World Map Strategy Kit! https://t.co/egphe7e67v #gamedev https://t.co/N3LHr0QEYy
+-----------
+AdrianGenerator
+Wed Jan 10 21:22:57 +0000 2018
+Character creator progress: Hair, top and bottom selection added - next is accessories!
+
+Art: @Zinkase
+
+#gamedev #indiedev #indieDevHour @letsplaymanager https://t.co/mjRvFIDm0K
+-----------
+GameDevJuku
+Wed Jan 10 21:19:26 +0000 2018
+Lenovo debuts the Mirage Solo, its standalone Daydream VR headset https://t.co/lOY7STzRBJ https://t.co/NH7merYpKs
+-----------
+sansberro
+Wed Jan 10 21:19:12 +0000 2018
+@PixelCupSoccer @unity3d @gabrielgambetta https://t.co/pstuVnnaGp
+-----------
+MagninGames
+Wed Jan 10 21:19:09 +0000 2018
+Take a moment to assess the condition of your #Zamboni machine's tires, studs and inflation. Proper inflation plays an important role in the safe and proper operation and performance of your resurfacer. https://t.co/F8mWUV167q
+-----------
+sansberro
+Wed Jan 10 21:19:04 +0000 2018
+Day 8! Making a #multiplayer Asteroid game as a test base for implementing online in @PixelCupSoccer and as a demo for classes! Implemented Server Time Step and Entity Interpolations! Porting to @unity3d the Live Demo from @gabrielgambetta! #gamedev #indiedev #madewithunity https://t.co/82kmIhKGTr
+-----------
+AdrianGenerator
+Wed Jan 10 21:18:12 +0000 2018
+Got some progress with the texture painting workflow. This is the engine and it will be one of the most important modules of the ship. https://t.co/5FGYYFdOdB
+-----------
+ArcticArcade
+Wed Jan 10 21:15:34 +0000 2018
+Happy Birthday Me 😊🎁🎉 https://t.co/1oFRUBKVvm
+-----------
+AdrianGenerator
+Wed Jan 10 21:14:19 +0000 2018
+npc #LUCAHgame #indiedev #gamedev https://t.co/qXn3TkzFXB
+-----------
+AdrianGenerator
+Wed Jan 10 21:10:58 +0000 2018
+Agua rica!! 😋 https://t.co/BCDjTzHD2z
+-----------
+AdrianGenerator
+Wed Jan 10 21:10:32 +0000 2018
+Now there are mice squirrel creatures that run about #gamedev #indiegame #procgen #pixelart https://t.co/52TO3YYeqj
+-----------
+AdrianGenerator
+Wed Jan 10 21:09:42 +0000 2018
+didnt like how boring the old special looked so heres the new way i do specials, and also a new special attack while im at it :]
+
+#game #pixelart #boxing #indiegame #indiedev #ggamedev #animations
+@PimagoDev https://t.co/1cKhHS3ZAj
+-----------
+kewelworldcom
+Wed Jan 10 21:06:37 +0000 2018
+It's the last day of the year, so check out our picks for the 10 best horror films of 2017 over at @ScreamHorrorMag! https://t.co/EXkkw5EudG https://t.co/Nbg6iUb77x
+-----------
+HenryHoffman
+Wed Jan 10 21:05:57 +0000 2018
+It’s fun though, in a Mad Max kind of way
+-----------
+
+Wed Jan 10 2018 17:10:24 GMT-0500 (EST)
+Song: I Want It That Way by Backstreet Boys
+Album: The Hits--Chapter One
+Preview Link: https://api.spotify.com/v1/tracks/6e40mgJiCid5HRAGrbpGA6
+
+Thu Jan 18 2018 11:33:22 GMT-0500 (EST)
+Invalid command. Use -h for command help.
